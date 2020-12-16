@@ -6,14 +6,11 @@ pipeline{
         stage("A"){
             steps{
                 echo "___Tú Đẹp Trai___"
-                echo "${GIT_COMMIT}"
-                echo "${GIT_AUTHOR_NAME}"
-                echo "${GIT_URL}"
-                echo "${GIT_URL_N}"
-                echo "${GIT_BRANCH}"
-                echo "${GIT_LOCAL_BRANCH}"
-                echo "${GIT_PREVIOUS_COMMIT}"
-                echo "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                echo "Git Commit $GIT_COMMIT"
+                echo "Env Git Name ${env.GIT_COMMITTER_NAME}"
+                echo "Env Git Author Name ${env.GIT_AUTHOR_NAME}"
+                echo "Git Author Name $GIT_AUTHOR_NAME"
+                echo "Git Commiter Name $GIT_COMMITTER_NAME"
             }
         }
     }

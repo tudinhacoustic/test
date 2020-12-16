@@ -2,6 +2,10 @@ pipeline{
 
     agent any 
 
+    environment {
+        TELEGRAM_GROUP = -438532935
+    }
+
     stages{
         stage("A"){
             steps{

@@ -2,15 +2,29 @@ pipeline{
 
     agent any 
 
+    environment {
+        TELEGRAM_GROUP = -438532935
+        GIT_NAME=$(git --no-pager show -s --format='%an' $GIT_COMMIT)
+        GIT_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
+    }
+
     stages{
         stage("A"){
             steps{
-                echo "___Tú Đẹp Trai___"
-                echo "Git Commit $GIT_COMMIT"
-                echo "Env Git Name ${env.GIT_COMMITTER_NAME}"
-                echo "Env Git Author Name ${env.GIT_AUTHOR_NAME}"
-                echo "Git Author Name $GIT_AUTHOR_NAME"
-                echo "Git Commiter Name $GIT_COMMITTER_NAME"
+                echo "${GIT_COMMIT}"
+                echo "${GIT_NAME}"
+                echo "${GIT_EMAIL}"
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
             }
         }
     }

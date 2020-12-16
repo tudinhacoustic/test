@@ -2,18 +2,17 @@ pipeline{
 
     agent any 
 
-    environment {
-        TELEGRAM_GROUP = -438532935
-        GIT_NAME=$(git --no-pager show -s --format='%an' $GIT_COMMIT)
-        GIT_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
-    }
-
     stages{
         stage("A"){
             steps{
-                echo "${GIT_COMMIT}"
-                echo "${GIT_NAME}"
-                echo "${GIT_EMAIL}"
+                script {
+                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                    env.GIT_COMMITTER_EMAIL = sh(script: "git --no-pager show -s --format='%ae'", returnStdout: true).trim()
+                    env.GIT_COMMITTER_NAME = sh(script: "git --no-pager show -s --format='%an'", returnStdout: true).trim()
+                }
+                echo "${env.GIT_COMMIT_MSG}"
+                echo "${env.GIT_COMMITTER_EMAIL}"
+                echo "${env.GIT_COMMITTER_NAME}"
             }
             post{
                 always{

@@ -5,11 +5,9 @@ pipeline{
     stages{
         stage("A"){
             steps{
-                script {
-                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-                }
-                echo "${GIT_COMMIT_MSG}"
-                echo "${env.BRANCH_NAME}"
+                echo "___Tú Đẹp Trai___"
+                echo "${GIT_COMMIT}"
+                echo "${BRANCH_NAME}"
                 echo "${env}"
             }
             post{

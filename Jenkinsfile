@@ -14,7 +14,7 @@ pipeline{
                     env.GIT_COMMITTER_EMAIL = sh(script: "git --no-pager show -s --format='%ae'", returnStdout: true).trim()
                     env.GIT_COMMITTER_NAME = sh(script: "git --no-pager show -s --format='%an'", returnStdout: true).trim()
                 }
-                telegramSend(message:'Pipeline for branch "${GIT_BRANCH}", project tudinhacoustic/go-api passed. Details: https://github.com/tudinhacoustic/go-api/commit/"${GIT_COMMIT}"',chatId:"${TELEGRAM_GROUP}")
+                telegramSend(message:"Pipeline for branch ${GIT_BRANCH}, project tudinhacoustic/go-api passed. Details: https://github.com/tudinhacoustic/go-api/commit/${GIT_COMMIT}",chatId:"${TELEGRAM_GROUP}")
                 echo "${env.GIT_COMMIT_MSG}"
                 echo "${env.GIT_COMMITTER_EMAIL}"
                 echo "${env.GIT_COMMITTER_NAME}"

@@ -16,17 +16,6 @@ pipeline{
                 echo "${GIT_PREVIOUS_COMMIT}"
                 echo "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
         }
     }
     post{

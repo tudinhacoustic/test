@@ -28,7 +28,7 @@ pipeline{
                 echo "${env.GIT_COMMITTER_NAME}"
                 echo "${GIT_BRANCH}"
                 echo "${env.BRANCH_NAME}"
-
+                echo "🎉"
             }
             post{
                 always{

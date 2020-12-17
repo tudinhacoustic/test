@@ -19,6 +19,15 @@ pipeline{
                 echo "${env.GIT_COMMITTER_EMAIL}"
                 echo "${env.GIT_COMMITTER_NAME}"
                 echo "${GIT_BRANCH}"
+                echo "${env.BRANCH_NAME}"
+                switch (env.BRANCH_NAME) {
+                case "master":
+                    echo "Master"
+                    break
+                case "dev":
+                    echo "Dev"
+                    break
+            }
             }
             post{
                 always{
